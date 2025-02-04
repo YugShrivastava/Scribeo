@@ -24,17 +24,21 @@ function App() {
       });
   }, []);
 
-      return !loading ? (
-        <div className="min-h-screen flex flex-wrap items-center justify-center bg-gray-400">
-          <Header />
-          <main>
-            <Outlet />
-          </main>
-          <Footer />
-          <Analytics />
-        </div>
-      ) : (
-      <div className="text-2xl text-white">Loading...</div>)
+  return (
+    <>
+      {" "}
+      !loading ? (
+      <div className="min-h-screen flex flex-wrap items-center justify-center bg-gray-400">
+        <Header />
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
+      ) : (<div className="text-2xl text-white">Loading...</div>)
+      <Analytics />
+    </>
+  );
 }
 
 export default App;
