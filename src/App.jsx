@@ -4,6 +4,7 @@ import authService from "./appwrite/auth_service";
 import { login, logout } from "./features/authSlice";
 import { Footer, Header } from "./components";
 import { Outlet } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -30,6 +31,7 @@ function App() {
             <Outlet />
           </main>
           <Footer />
+          <Analytics />
         </div>
       ) : (
       <div className="text-2xl text-white">Loading...</div>)
