@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  postTitle: '',
+  title: '',
   slug: '',
   postContent: '',
   featuredImage: '',
@@ -14,7 +14,7 @@ const postSlice = createSlice({
   initialState,
   reducers: {
     addPost: (state, action) => {
-      state.postTitle = action.payload.title
+      state.title = action.payload.title
       state.slug = action.payload.slug
       state.postContent = action.payload.content
       state.featuredImage = action.payload.featuredImage
@@ -22,7 +22,7 @@ const postSlice = createSlice({
       state.userId = action.payload.userId
     },
     updatePost: (state, action) => {
-      state.postTitle = action.payload.title
+      state.title = action.payload.title
       state.slug = action.payload.slug
       state.postContent = action.payload.content
       state.status = action.payload.status

@@ -18,9 +18,9 @@ export class DatabaseService {
   // Post services
 
   async createPost({
-    postTitle,
+    title,
     slug,
-    postContent,
+    content,
     featuredImage,
     status,
     userId,
@@ -31,8 +31,8 @@ export class DatabaseService {
         conf.COLLECTION_ID,
         slug,
         {
-          postTitle,
-          postContent,
+          title,
+          content,
           featured_image: featuredImage,
           status,
           user_id: userId,
@@ -44,15 +44,15 @@ export class DatabaseService {
     }
   }
 
-  async updatePost(slug, { postTitle, postContent, featuredImage, status }) {
+  async updatePost(slug, { title, content, featuredImage, status }) {
     try {
       return await this.databases.updateDocument(
         conf.DATABASE_ID,
         conf.COLLECTION_ID,
         slug,
         {
-          postTitle,
-          postContent,
+          title,
+          content,
           featured_image: featuredImage,
           status,
         }

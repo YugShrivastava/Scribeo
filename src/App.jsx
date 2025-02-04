@@ -23,8 +23,6 @@ function App() {
       });
   }, []);
 
-  return (
-    <>
       return !loading ? (
         <div className="min-h-screen flex flex-wrap content-between bg-gray-400">
           <Header />
@@ -35,8 +33,6 @@ function App() {
         </div>
       ) : (
       <div className="text-2xl text-white">Loading...</div>)
-    </>
-  );
 }
 
 export default App;
