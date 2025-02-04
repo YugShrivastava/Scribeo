@@ -34,7 +34,6 @@ export class DatabaseService {
         }
       );
     } catch (error) {
-      console.log("Error in createPost", error);
       return false;
     }
   }
@@ -53,7 +52,6 @@ export class DatabaseService {
         }
       );
     } catch (error) {
-      console.log("Error in updatePost", error);
       return false;
     }
   }
@@ -67,7 +65,6 @@ export class DatabaseService {
       );
       return true;
     } catch (error) {
-      console.log("Error in deletePost", error);
       return false;
     }
   }
@@ -80,7 +77,6 @@ export class DatabaseService {
         slug
       );
     } catch (error) {
-      console.log("Error in getPost", error);
       return false;
     }
   }
@@ -93,7 +89,6 @@ export class DatabaseService {
         [Query.equal("status", true)]
       );
     } catch (error) {
-      console.log("Error in getAllPost", error);
       return false;
     }
   }
@@ -104,7 +99,6 @@ export class DatabaseService {
     try {
       return await this.bucket.createFile(conf.BUCKET_ID, ID.unique(), file);
     } catch (error) {
-      console.log("Error in uploadFile", error);
       return false;
     }
   }
@@ -114,7 +108,6 @@ export class DatabaseService {
       await this.bucket.deleteFile(conf.BUCKET_ID, fileId);
       return true;
     } catch (error) {
-      console.log("Error in deleteFile", error);
       return false;
     }
   }

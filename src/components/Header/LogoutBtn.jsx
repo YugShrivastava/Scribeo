@@ -14,7 +14,7 @@ function LogoutBtn() {
       dispatch(logout())
       navigate('/')
     })
-    .catch((err) => {console.error("Error in logoutBtn functionality", err)})
+    .catch((err) => {})
   }
 
   return (

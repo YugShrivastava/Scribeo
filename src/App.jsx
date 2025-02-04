@@ -18,7 +18,7 @@ function App() {
         if (userData) dispatch(login({ userData }));
         else dispatch(logout());
       })
-      .catch((error) => console.log("Error in loading useEffect"))
+      .catch((error) => {})
       .finally(() => {
         setLoading(false);
       });
@@ -27,15 +27,17 @@ function App() {
   return (
     <>
       {" "}
-      !loading ? (
-      <div className="min-h-screen flex flex-wrap items-center justify-center bg-gray-400">
-        <Header />
-        <main>
-          <Outlet />
-        </main>
-        <Footer />
-      </div>
-      ) : (<div className="text-2xl text-white">Loading...</div>)
+      {!loading ? (
+        <div className="min-h-screen flex flex-wrap items-center justify-center bg-gray-400">
+          <Header />
+          <main>
+            <Outlet />
+          </main>
+          <Footer />
+        </div>
+      ) : (
+        <div className="text-2xl text-white">Loading...</div>
+      )}
       <Analytics />
     </>
   );

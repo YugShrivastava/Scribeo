@@ -16,7 +16,7 @@ function EditPost() {
         .then((post) => {
           setPost(post);
         })
-        .catch((err) => console.error("Error in EditPost", err));
+        .catch((err) => {});
     }
     else{
       navigate('/')

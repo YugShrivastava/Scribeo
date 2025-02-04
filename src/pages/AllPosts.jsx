@@ -11,7 +11,7 @@ function AllPosts() {
       .then((posts) => {
         if (posts) setPosts(posts.documents);
       })
-      .catch((error) => console.error("Error in AllPosts Page", error));
+      .catch((error) => {});
   }, []);
 
   return (
