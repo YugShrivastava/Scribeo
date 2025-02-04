@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import authService from '../../appwrite/config'
+import authService from '../../appwrite/auth_service'
 import {logout} from '../../features/authSlice'
 
 function LogoutBtn() {
@@ -11,7 +11,7 @@ function LogoutBtn() {
     .then(() => {
       dispatch(logout())
     })
-    .catch((err) => {console.error("Error in logoutBtn functionality", error)})
+    .catch((err) => {console.error("Error in logoutBtn functionality", err)})
   }
 
   return (

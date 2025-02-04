@@ -17,7 +17,7 @@ function App() {
         if (userData) dispatch(login({ userData }));
         else dispatch(logout());
       })
-      .catch((error) => console.log("Error in loading useEffect", error))
+      .catch((error) => console.log("Error in loading useEffect"))
       .finally(() => {
         setLoading(false);
       });
@@ -27,7 +27,7 @@ function App() {
         <div className="min-h-screen flex flex-wrap content-between bg-gray-400">
           <Header />
           <main>
-            TODO:  {/* <Outlet /> */}
+            <Outlet />
           </main>
           <Footer />
         </div>

@@ -62,12 +62,12 @@ function Signup() {
                 matchPattern: value => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value) || "Email address must be  a valid address"
               }
             })} />
-            <Input labelText='Password' placeholder='Enter your password' type='password' {...register('password'), {
+            <Input labelText='Password' placeholder='Enter your password' type='password' {...register('password', {
               required: true,
               validate: {
                 matchPattern: value => /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value) || 'Password must be of at least 8 characters and must contain at least one uppercase letter, one lowercase letter, one digit, one special character'
               }
-            }}/>
+            })}/>
             <Button type="submit" classname="w-full" children="Sign up" />
           </div>
         </form>

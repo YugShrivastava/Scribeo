@@ -53,9 +53,10 @@ function Login() {
                 matchPattern: value => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value) || "Email address must be  a valid address"
               }
             })} />
-            <Input labelText='Password' placeholder='Enter your password' type='password' {...register('password'), {
+            <Input labelText='Password' placeholder='Enter your password' type='password' {...register('password'
+            ,{
               required: true,
-            }}/>
+            })}/>
             <Button type="submit" classname="w-full" children="Sign in" />
           </div>
         </form>

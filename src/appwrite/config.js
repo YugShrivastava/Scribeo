@@ -39,7 +39,7 @@ export class DatabaseService {
         }
       );
     } catch (error) {
-      console.error("Error in createPost", error);
+      // console.log("Error in createPost", error);
       return false;
     }
   }
@@ -58,7 +58,7 @@ export class DatabaseService {
         }
       );
     } catch (error) {
-      console.error("Error in updatePost", error);
+      // console.log("Error in updatePost", error);
       return false;
     }
   }
@@ -72,7 +72,7 @@ export class DatabaseService {
       );
       return true;
     } catch (error) {
-      console.error("Error in deletePost", error);
+      // console.log("Error in deletePost", error);
       return false;
     }
   }
@@ -85,7 +85,7 @@ export class DatabaseService {
         slug
       );
     } catch (error) {
-      console.error("Error in getPost", error);
+      // console.log("Error in getPost", error);
       return false;
     }
   }
@@ -98,7 +98,7 @@ export class DatabaseService {
         [Query.equal("status_key", "true")]
       );
     } catch (error) {
-      console.error("Error in getAllPost", error);
+      // console.log("Error in getAllPost", error);
       return false;
     }
   }
@@ -109,7 +109,7 @@ export class DatabaseService {
     try {
       return await this.bucket.createFile(conf.BUCKET_ID, ID.unique(), file);
     } catch (error) {
-      console.error("Error in uploadFile", error);
+      // console.log("Error in uploadFile", error);
       return false
     }
   }
@@ -119,7 +119,7 @@ export class DatabaseService {
       await this.bucket.deleteFile(conf.BUCKET_ID, fileId)
       return true;
     } catch (error) {
-        console.error('Error in deleteFile', error)
+        // console.log('Error in deleteFile', error)
         return false
     }
   }
@@ -128,5 +128,6 @@ export class DatabaseService {
     return this.bucket.getFilePreview(conf.BUCKET_ID, fileId)
   }
 }
+const appwriteService = new DatabaseService();
 
-export default new DatabaseService();
+export default appwriteService

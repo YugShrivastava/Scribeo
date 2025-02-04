@@ -24,7 +24,7 @@ export class AuthService {
       if (userAccount) return userAccount;
       return this.loginUser({ email, password }); // this can couse problem, if error check this!!
     } catch (error) {
-      console.log("Error in createAccount", error);
+      // console.log("Error in createAccount", error);
     }
   }
 
@@ -32,7 +32,7 @@ export class AuthService {
     try {
       return await this.account.createEmailPasswordSession(email, password);
     } catch (error) {
-      console.log("Error in loginUser", error);
+      // console.log("Error in loginUser", error);
     }
   }
 
@@ -40,7 +40,7 @@ export class AuthService {
     try {
       await this.account.deleteSessions();
     } catch (error) {
-      console.error("Error in logoutUser", error);
+      // console.log("Error in logoutUser", error);
     }
   }
 
@@ -48,7 +48,7 @@ export class AuthService {
     try {
       return await this.account.get();
     } catch (error) {
-      console.error("Error in getCurrentUser", error);
+      // console.log("Error in getCurrentUser", error);
     }
 
     return null;
