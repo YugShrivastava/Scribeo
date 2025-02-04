@@ -17,15 +17,10 @@ export class DatabaseService {
 
   // Post services
 
-  async createPost({
-    title,
-    slug,
-    content,
-    featuredImage,
-    status,
-    userId,
-  }) {
+  async createPost({ title, slug, content, featuredImage, status, userId }) {
     try {
+      if(status === 'active') status = true
+      else status = false
       return await this.databases.createDocument(
         conf.DATABASE_ID,
         conf.COLLECTION_ID,
@@ -39,7 +34,7 @@ export class DatabaseService {
         }
       );
     } catch (error) {
-      // console.log("Error in createPost", error);
+      console.log("Error in createPost", error);
       return false;
     }
   }
@@ -58,7 +53,7 @@ export class DatabaseService {
         }
       );
     } catch (error) {
-      // console.log("Error in updatePost", error);
+      console.log("Error in updatePost", error);
       return false;
     }
   }
@@ -72,7 +67,7 @@ export class DatabaseService {
       );
       return true;
     } catch (error) {
-      // console.log("Error in deletePost", error);
+      console.log("Error in deletePost", error);
       return false;
     }
   }
@@ -85,7 +80,7 @@ export class DatabaseService {
         slug
       );
     } catch (error) {
-      // console.log("Error in getPost", error);
+      console.log("Error in getPost", error);
       return false;
     }
   }
@@ -95,10 +90,10 @@ export class DatabaseService {
       return await this.databases.listDocuments(
         conf.DATABASE_ID,
         conf.COLLECTION_ID,
-        [Query.equal("status_key", "true")]
+        [Query.equal("status", true)]
       );
     } catch (error) {
-      // console.log("Error in getAllPost", error);
+      console.log("Error in getAllPost", error);
       return false;
     }
   }
@@ -109,25 +104,25 @@ export class DatabaseService {
     try {
       return await this.bucket.createFile(conf.BUCKET_ID, ID.unique(), file);
     } catch (error) {
-      // console.log("Error in uploadFile", error);
-      return false
+      console.log("Error in uploadFile", error);
+      return false;
     }
   }
 
   async deleteFile(fileId) {
     try {
-      await this.bucket.deleteFile(conf.BUCKET_ID, fileId)
+      await this.bucket.deleteFile(conf.BUCKET_ID, fileId);
       return true;
     } catch (error) {
-        // console.log('Error in deleteFile', error)
-        return false
+      console.log("Error in deleteFile", error);
+      return false;
     }
   }
 
-  getFilePreview(fileId){
-    return this.bucket.getFilePreview(conf.BUCKET_ID, fileId)
+  getFilePreview(fileId) {
+    return this.bucket.getFilePreview(conf.BUCKET_ID, fileId);
   }
 }
 const appwriteService = new DatabaseService();
 
-export default appwriteService
+export default appwriteService;

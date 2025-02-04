@@ -12,7 +12,7 @@ export default function RTE({
   return (
     <div className="w-full">
       {label && (
-        <label className="inline-block mb-1 pl-1" htmlFor="">
+        <label className="inline-block mb-1 pl-1">
           {label}
         </label>
       )}
@@ -21,6 +21,7 @@ export default function RTE({
         control={control}
         render={({ field: { onChange } }) => (
           <Editor
+            apiKey={import.meta.env.VITE_TINYMCE_API_KEY}
             initialValue="default value"
             init={{
               initialValue: defaultValue,

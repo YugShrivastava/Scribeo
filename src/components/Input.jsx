@@ -7,9 +7,9 @@ const Input = React.forwardRef(
       labelClass = "",
       labelText,
       type = "text",
-      onChange = "{() => {}}",
+      // onChange = "{() => {}}",
       placeholder = "",
-      value = "",
+      // value = "",
       className = "",
       ...props
     },
@@ -26,9 +26,9 @@ const Input = React.forwardRef(
         )}
         <input
           type={type}
-          className={className}
-          onChange={onChange}
-          value={value}
+          className={`bg-blue-100 px-4 py-2 ${className}`}
+          // onChange={onChange}
+            // value={value}
           placeholder={placeholder}
           {...props}
           ref={ref}

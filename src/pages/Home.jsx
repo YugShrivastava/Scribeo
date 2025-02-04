@@ -8,9 +8,11 @@ function Home() {
 
   useEffect(() => {
     appwriteService.getAllPost().then(posts => {
-      if(posts) setPosts(posts)
+      if(posts) setPosts(posts.documents)
     })
   }, [])
+
+  
 
   if(posts.length === 0){
     return (
