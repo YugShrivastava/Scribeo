@@ -27,7 +27,7 @@ function App() {
   return (
     <>
       {" "}
-      !loading ? (
+      {!loading ? (
       <div className="min-h-screen flex flex-wrap items-center justify-center bg-gray-400">
         <Header />
         <main>
@@ -35,7 +35,7 @@ function App() {
         </main>
         <Footer />
       </div>
-      ) : (<div className="text-2xl text-white">Loading...</div>)
+      ) : (<div className="text-2xl text-white">Loading...</div>)}
       <Analytics />
     </>
   );
