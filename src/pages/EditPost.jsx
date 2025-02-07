@@ -10,6 +10,7 @@ function EditPost() {
 
   useEffect(() => {
     if (slug) {
+<<<<<<< HEAD
       storageService.getPost(slug).then((post) => {
         if (post) {
           setPosts(post);
@@ -17,6 +18,17 @@ function EditPost() {
       });
     } else {
       navigate("/");
+=======
+      const post = appwriteService
+        .getPost(slug)
+        .then((post) => {
+          setPost(post);
+        })
+        .catch((err) => {});
+    }
+    else{
+      navigate('/')
+>>>>>>> main
     }
   }, [slug, navigate]);
 

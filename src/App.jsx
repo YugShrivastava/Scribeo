@@ -25,12 +25,17 @@ function App() {
       .catch((error) => {
         console.log(error);
       })
+<<<<<<< HEAD
+=======
+      .catch((error) => {})
+>>>>>>> main
       .finally(() => {
         setLoading(false);
       });
   }, [loading]);
 
   return (
+<<<<<<< HEAD
     <div className="background-primary w-full h-screen flex items-center justify-center flex-col">
       <div className="w-full h-screen flex flex-col items-center">
         {loading ? (
@@ -48,6 +53,23 @@ function App() {
         {/* <Analytics /> unmark this comment after completing the project */}
       </div>
     </div>
+=======
+    <>
+      {" "}
+      {!loading ? (
+        <div className="min-h-screen flex flex-wrap items-center justify-center bg-gray-400">
+          <Header />
+          <main>
+            <Outlet />
+          </main>
+          <Footer />
+        </div>
+      ) : (
+        <div className="text-2xl text-white">Loading...</div>
+      )}
+      <Analytics />
+    </>
+>>>>>>> main
   );
 }
 

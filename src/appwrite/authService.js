@@ -24,6 +24,7 @@ export class AuthService {
         this.loginUser({ email, password });
       } else return userAccount;
     } catch (error) {
+<<<<<<< HEAD:src/appwrite/authService.js
       throw error;
     }
   }
@@ -33,6 +34,8 @@ export class AuthService {
       return this.account.get();
     } catch (error) {
       throw error;
+=======
+>>>>>>> main:src/appwrite/auth_service.js
     }
   }
 
@@ -40,7 +43,10 @@ export class AuthService {
     try {
       return await this.account.createEmailPasswordSession(email, password);
     } catch (error) {
+<<<<<<< HEAD:src/appwrite/authService.js
       throw error;
+=======
+>>>>>>> main:src/appwrite/auth_service.js
     }
   }
 
@@ -50,9 +56,23 @@ export class AuthService {
       if (session) return await this.account.deleteSessions(); // if any error comes remove deleteSession(session) and write deleteSessions()
       return await this.account.deleteSessions();
     } catch (error) {
+<<<<<<< HEAD:src/appwrite/authService.js
       throw error;
     }
   }
+=======
+    }
+  }
+
+  async getCurrentUser() {
+    try {
+      return await this.account.get();
+    } catch (error) {
+      return null;
+    }
+
+  }
+>>>>>>> main:src/appwrite/auth_service.js
 }
 
 const authService = new AuthService();

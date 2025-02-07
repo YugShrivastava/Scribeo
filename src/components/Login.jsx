@@ -14,6 +14,7 @@ function Login() {
   const { register, handleSubmit } = useForm();
 
   const login = async (data) => {
+<<<<<<< HEAD
     setError(null);
     try {
       const user = await authService.loginUser(data);
@@ -25,6 +26,15 @@ function Login() {
         }
       } else {
         setError("Invalid credentials...");
+=======
+    setError("");
+    try {
+      const session = await authService.loginUser(data);
+      if (session) {
+        const userData = await authService.getCurrentUser();
+        if (userData) dispatch(authLogin(userData));
+        navigate("/");
+>>>>>>> main
       }
     } catch (error) {
       setError(error.message);

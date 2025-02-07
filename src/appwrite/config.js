@@ -29,7 +29,11 @@ export class StorageService {
         }
       );
     } catch (error) {
+<<<<<<< HEAD
       console.log(error);
+=======
+      return false;
+>>>>>>> main
     }
   }
 
@@ -47,7 +51,11 @@ export class StorageService {
         }
       );
     } catch (error) {
+<<<<<<< HEAD
       console.log(error);
+=======
+      return false;
+>>>>>>> main
     }
   }
 
@@ -60,7 +68,10 @@ export class StorageService {
       );
       return true;
     } catch (error) {
+<<<<<<< HEAD
       console.log(error);
+=======
+>>>>>>> main
       return false;
     }
   }
@@ -73,7 +84,10 @@ export class StorageService {
         slug
       );
     } catch (error) {
+<<<<<<< HEAD
       console.log(error);
+=======
+>>>>>>> main
       return false;
     }
   }
@@ -86,7 +100,10 @@ export class StorageService {
         query
       );
     } catch (error) {
+<<<<<<< HEAD
       console.log(error);
+=======
+>>>>>>> main
       return false;
     }
   }
@@ -99,7 +116,10 @@ export class StorageService {
         file
       );
     } catch (error) {
+<<<<<<< HEAD
       console.log(error);
+=======
+>>>>>>> main
       return false;
     }
   }
@@ -109,7 +129,10 @@ export class StorageService {
       await this.bucket.deleteFile(conf.BUCKET_ID, fileId);
       return true;
     } catch (error) {
+<<<<<<< HEAD
       console.log(error);
+=======
+>>>>>>> main
       return false;
     }
   }
