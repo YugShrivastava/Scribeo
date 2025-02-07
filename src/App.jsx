@@ -45,7 +45,7 @@ function App() {
             <Footer />
           </>
         )}
-        {/* <Analytics /> unmark this comment after completing the project */}
+        <Analytics />
       </div>
     </div>
   );
