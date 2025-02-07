@@ -1,9 +1,10 @@
-import AddPost from './AddPost'
-import AllPosts from './AllPosts'
-import EditPost from './EditPost'
-import Home from './Home'
-import Login from './Login'
+import Home from "./Home";
+import Login from "./Login";
+import Signup from "./Signup";
 import Post from './Post'
-import Signup from './Signup'
+import EditPost from "./EditPost";
+import Browse from "./Browse";
+import AddPost from "./AddPost";
+import MyPosts from "./MyPosts";
 
-export {AddPost, AllPosts, EditPost, Home, Login, Post, Signup}
+export {Home, Signup, Login, Post, EditPost, Browse, AddPost, MyPosts}

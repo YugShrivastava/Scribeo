@@ -1,1 +1,117 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+  background-color: var(--background);
+}
+
+.light {
+  --primary: #2980b9;
+  --primary-dark: #2471a3;
+  --background: #f9f9f9;
+  --card-bg: #ffffff;
+  --border: #e0e0e0;
+  --text-primary: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --accent: #1abc9c;
+  --accent-dark: #16a085;
+  --card-shadow: #e2e2e2;
+}
+
+.dark {
+  --primary: #217dba;
+  --primary-dark: #2e86c1;
+  --background: #121212;
+  --card-bg: #1e1e1e;
+  --border: #292929;
+  --text-primary: #ecf0f1;
+  --text-secondary: #95a5a6;
+  --accent: #34ad95;
+  --accent-dark: #1abc9c;
+  --card-shadow: #000000;
+}
+
+/* Custom Utility Classes for Scribeo, Might change them in future! */
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.background-primary {
+  background-color: var(--background);
+}
+
+.input {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+}
+.input:focus {
+  border-color: var(--primary);
+}
+.input::placeholder {
+  color: var(--text-secondary);
+}
+.label {
+  color: var(--text-primary);
+}
+
+.border {
+  border-color: var(--border);
+}
+
+.border-color{
+  color: var(--border)
+}
+
+.primary {
+  background-color: var(--primary);
+}
+.primary-dark {
+  background-color: var(--primary-dark);
+}
+
+.card-bg {
+  background-color: var(--card-bg);
+}
+
+.accent {
+  background-color: var(--accent);
+}
+
+.accent-dark {
+  background-color: var(--accent-dark);
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+.text-accent-dark {
+  color: var(--accent-dark);
+}
+
+.shadow-accent{
+  box-shadow: 0px 0px 20px var(--card-shadow);
+}
+
+@media (min-width: 450px) {
+  .xs{
+    width: 50%
+  }
+}
+
+@media(min-width: 650px) {
+  .xs {
+    width: 33%
+  }
+}
+
+@media(min-width: 900px) {
+  .xs {
+    width: 25%;
+  }
+}

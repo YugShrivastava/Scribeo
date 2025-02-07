@@ -4,6 +4,7 @@ const conf = {
   DATABASE_ID: String(import.meta.env.VITE_DATABASE_ID),
   COLLECTION_ID: String(import.meta.env.VITE_COLLECTION_ID),
   BUCKET_ID: String(import.meta.env.VITE_BUCKET_ID),
+  TINYMCE_API_KEY: String(import.meta.env.VITE_TINYMCE_API_KEY)
 }
 
 export default conf

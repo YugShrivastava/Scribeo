@@ -1,65 +1,72 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import appwriteService from "../appwrite/config";
-import { Button, Container } from "../components";
-import parse from "html-react-parser";
 import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import storageService from "../appwrite/config";
+import { Button } from "../components";
+import parse from 'html-react-parser'
 
-export default function Post() {
-  const [post, setPost] = useState(null);
+function Post() {
   const { slug } = useParams();
+  const [post, setPost] = useState(null);
   const navigate = useNavigate();
 
-  const {userData} = useSelector((state) => state.userData);
+  const { session } = useSelector((state) => state.auth.session);
 
-  const isAuthor = post && userData ? post.userId === userData.$id : false;
+  const isAuthor = post && session ? post.userId === session.$id : false;
 
   useEffect(() => {
     if (slug) {
-      appwriteService.getPost(slug).then((post) => {
-        if (post) setPost(post);
-        else navigate("/");
-      });
-    } else navigate("/");
+      storageService
+        .getPost(slug)
+        .then((post) => {
+          if (post) {
+            setPost(post);
+          } else navigate("/");
+        })
+        .catch((error) => {});
+    } else {
+      navigate("/");
+    }
   }, [slug, navigate]);
 
   const deletePost = () => {
-    appwriteService.deletePost(post.$id).then((status) => {
-      if (status) {
-        appwriteService.deleteFile(post.featuredImage);
-        navigate("/");
-      }
-    });
+    storageService
+      .deletePost(post.$id)
+      .then((status) => {
+        if (status) {
+          storageService.deleteFile(post.image);
+          navigate("/");
+        }
+      })
+      .catch((error) => {});
   };
 
   return post ? (
-    <div className="py-8">
-      <Container>
-        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+    <div className="w-full flex flex-col items-center px-10">
+      <div className="flex flex-col items-baseline my-14 gap-5 py-4 px-10 border card-bg shadow rounded-md">
+        {isAuthor ? (
+          <div className="flex flex-wrap gap-4 self-end">
+            <Button
+              text="Edit"
+              onClick={() => {
+                navigate(`/edit-post/${post.$id}`);
+              }}
+            />
+            <Button text="Delete" onClick={deletePost} />
+          </div>
+        ) : null}
+        <div>
           <img
-            src={appwriteService.getFilePreview(post.featured_image)}
-            alt={post.title}
-            className="rounded-xl"
+            src={storageService.getFullFilePreview(post.image)}
+            alt="Post Image"
+            className="rounded-md"
           />
-
-          {isAuthor && (
-            <div className="absolute right-6 top-6">
-              <Link to={`/edit-post/${post.$id}`}>
-                <Button bgColor="bg-green-500" className="mr-3">
-                  Edit
-                </Button>
-              </Link>
-              <Button bgColor="bg-red-500" onClick={deletePost}>
-                Delete
-              </Button>
-            </div>
-          )}
         </div>
-        <div className="w-full mb-6">
-          <h1 className="text-2xl font-bold">{post.title}</h1>
-        </div>
-        <div className="browser-css">{parse(post.content)}</div>
-      </Container>
+        <div className="text-3xl font-semibold text-primary">{post.title}</div>
+        <div className="text-primary text-xl">{parse(post.content)}</div>
+      </div>
     </div>
   ) : null;
 }
+
+export default Post;

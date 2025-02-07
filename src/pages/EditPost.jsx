@@ -1,35 +1,30 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import appwriteService from "../appwrite/config";
-import { Container, PostForm } from "../components";
+import React, { useEffect, useState } from "react";
+import { PostForm } from "../components";
+import storageService from "../appwrite/config";
 import { useNavigate, useParams } from "react-router-dom";
 
 function EditPost() {
-  const [post, setPost] = useState([]);
+  const [post, setPosts] = useState(null);
   const { slug } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (slug) {
-      const post = appwriteService
-        .getPost(slug)
-        .then((post) => {
-          setPost(post);
-        })
-        .catch((err) => console.error("Error in EditPost", err));
-    }
-    else{
-      navigate('/')
+      storageService.getPost(slug).then((post) => {
+        if (post) {
+          setPosts(post);
+        } else navigate("/");
+      });
+    } else {
+      navigate("/");
     }
   }, [slug, navigate]);
 
   return post ? (
-      <div className="py-8">
-        <Container>
-          <PostForm post={post} />
-        </Container>
-      </div>
-  ) : null
+    <div className="w-full flex justify-center mt-10">
+      <PostForm post={post} />
+    </div>
+  ) : null;
 }
 
 export default EditPost;

@@ -1,62 +1,99 @@
 import React from "react";
-import { Container, Logo, LogoutBtn   } from "../";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import Button from "../Button";
+import logo from "../../assets/logo.png";
+import authService from "../../appwrite/authService";
+import { logout } from "../../features/authSlice";
 
 function Header() {
-  const authStatus = useSelector((state) => (state.status));
-
+  const authStatus = useSelector((state) => state.auth.status);
+  const dispatch = useDispatch()
   const navigate = useNavigate();
 
   const navItems = [
     {
       name: "Home",
-      url: "/",
+      path: "/",
       active: true,
     },
     {
+      name: "Browse",
+      path: "/browse",
+      active: authStatus,
+    },
+    {
+      name: "My Posts",
+      path: "/my-posts",
+      active: authStatus,
+    },
+    {
+      name: "Add Post",
+      path: "/add-post",
+      active: authStatus,
+    },
+    {
       name: "Login",
-      url: "/login",
+      path: "/login",
       active: !authStatus,
     },
     {
-      name: "Signup",
-      url: "/signup",
+      name: "Sign up",
+      path: "/signup",
       active: !authStatus,
-    },
-    {
-      name: "All Posts",
-      url: "/all-posts",
-      active: authStatus,
-    },
-    {
-      name: "Add Posts",
-      url: "/add-post",
-      active: authStatus,
     },
   ];
 
+  const logoutHandler = () => {
+    authService.logoutUser()
+    .then(() => {
+      dispatch(logout())
+      navigate('/')
+    })
+    .catch((err) => {console.log(err)})
+  }
+
+
   return (
-    <header className="py-3 shadow bg-gray-500 w-full">
-      <Container>
-        <nav className="flex">
-          <div className="mr-4">
-            <Link to={"/"}>
-              <Logo width="70px" />
-            </Link>
+    <header className="primary w-full px-4 py-4 flex items-center justify-center">
+      <nav className="flex items-center justify-between flex-wrap md:w-[85%] mr-14">
+        <Link to={"/"}>
+          <div className="flex items-end justify-center gap-2">
+            <img src={logo} alt="logo" width={"50px"} className="mb-1" />
+            <p className="text-gray-200 font-semibold text-2xl mb-2.5">
+              Scribeo
+            </p>
           </div>
-          <ul className="flex ml-auto ">
-            {navItems.map(item => item.active ? <li key={item.name}>
-              <button onClick={() => navigate(item.url)}
-                className="inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full">{item.name}</button>
-            </li> : null)}
-            {authStatus && (
-              <li><LogoutBtn /></li>
+        </Link>
+        <div className="flex flex-wrap items-center justify-between gap-5">
+          <ul className="flex flex-wrap items-center justify-around">
+            {navItems.map((item) =>
+              item.active ? (
+                <li key={item.name} >
+                  <Link to={item.path} className="">
+                    <Button
+                      bgColor=""
+                      hoverBgColor="var(--accent)"
+                      text={item.name}
+                      className="text-primary"
+                    />
+                  </Link>
+                </li>
+              ) : null
             )}
           </ul>
-        </nav>
-      </Container>
+          {authStatus ? (
+            <Button
+              text="Logout"
+              bgColor=""
+              hoverBgColor=""
+              textColor="text-gray-100 dark:text-gray-200"
+              className="bg-gray-900 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-900"
+              onClick={() => logoutHandler()}
+            />
+          ) : null}
+        </div>
+      </nav>
     </header>
   );
 }
