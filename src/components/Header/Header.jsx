@@ -8,7 +8,7 @@ import { logout } from "../../features/authSlice";
 
 function Header() {
   const authStatus = useSelector((state) => state.auth.status);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const navItems = [
@@ -45,14 +45,16 @@ function Header() {
   ];
 
   const logoutHandler = () => {
-    authService.logoutUser()
-    .then(() => {
-      dispatch(logout())
-      navigate('/')
-    })
-    .catch((err) => {console.log(err)})
-  }
-
+    authService
+      .logoutUser()
+      .then(() => {
+        dispatch(logout());
+        navigate("/");
+      })
+      .catch((err) => {
+        // console.log(err);
+      });
+  };
 
   return (
     <header className="primary w-full px-4 py-4 flex items-center justify-center">
@@ -69,7 +71,7 @@ function Header() {
           <ul className="flex flex-wrap items-center justify-around">
             {navItems.map((item) =>
               item.active ? (
-                <li key={item.name} >
+                <li key={item.name}>
                   <Link to={item.path} className="">
                     <Button
                       bgColor=""

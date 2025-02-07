@@ -12,7 +12,9 @@ function Browse() {
       .then((posts) => {
         if (posts) setPosts(posts.documents);
       })
-      .catch((error) => alert(error));
+      .catch((error) => {
+        // alert(error)
+      });
   }, []);
 
   return (
@@ -21,7 +23,10 @@ function Browse() {
         {posts.length !== 0 ? (
           posts.map((post) =>
             post.status === "active" ? (
-              <div key={post.$id} className="md:p-4 p-2  w-full xs md:w-1/4 sm:w-1/3">
+              <div
+                key={post.$id}
+                className="md:p-4 p-2  w-full xs md:w-1/4 sm:w-1/3"
+              >
                 <PostCard post={post} />
               </div>
             ) : null
