@@ -78,7 +78,7 @@ function PostForm({ post }) {
     <div className="w-full md:px-20 px-5 sm:px-10 py-6">
       <form
         onSubmit={handleSubmit(submit)}
-        className="w-full grid grid-cols-2 border card-bg px-10 rounded-sm py-6 gap-10 justify-center items-center"
+        className="w-full grid grid-cols-2 border card-bg px-4 sm:px-10 rounded-sm py-4 sm:py-6 gap-10 justify-center items-center"
       >
         {/* <div className="flex gap-14 text-primary flex-wrap"> */}
         <div className="flex gap-5 flex-col text-primary col-span-2 sm:col-span-1">

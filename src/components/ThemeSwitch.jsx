@@ -27,7 +27,7 @@ function ThemeSwitch() {
   return (
     <div className="absolute top-7 right-8">
       <button
-        className="w-[24px] cursor-pointer"
+        className="w-7 cursor-pointer duration-75 sm:opacity-75 dark:sm:opacity-60 hover:opacity-100"
         onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       >
         {theme === "dark" ? (

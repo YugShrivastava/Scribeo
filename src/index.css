@@ -63,8 +63,8 @@ body {
   border-color: var(--border);
 }
 
-.border-color{
-  color: var(--border)
+.border-color {
+  color: var(--border);
 }
 
 .primary {
@@ -94,24 +94,59 @@ body {
   color: var(--accent-dark);
 }
 
-.shadow-accent{
+.shadow-accent {
   box-shadow: 0px 0px 20px var(--card-shadow);
 }
 
 @media (min-width: 450px) {
-  .xs{
-    width: 50%
-  }
-}
-
-@media(min-width: 650px) {
   .xs {
-    width: 33%
+    width: 50%;
   }
 }
 
-@media(min-width: 900px) {
+@media (min-width: 650px) {
+  .xs {
+    width: 33%;
+  }
+}
+
+@media (min-width: 900px) {
   .xs {
     width: 25%;
   }
+}
+
+.transform-1 {
+  transform: translateY(-10px);
+}
+.transform-1:hover {
+  transform: translateY(-12px);
+}
+.transform-1.active {
+  transform: translateY(50px);
+  opacity: 0;
+}
+
+.transform-2 {
+  transform: translateY(10px);
+}
+.transform-2:hover {
+  transform: translateY(12px);
+}
+.transform-2.active {
+  transform: translateY(50px);
+  opacity: 0;
+}
+
+.transform-3,
+.transform-4 {
+  transform: rotate(0deg);
+  transition: transform 0.2s ease-in-out;
+}
+
+.transform-3.active {
+  transform: rotate(-45deg);
+}
+.transform-4.active {
+  transform: rotate(45deg);
 }

@@ -5,6 +5,7 @@ import Button from "../Button";
 import logo from "../../assets/logo.png";
 import authService from "../../appwrite/authService";
 import { logout } from "../../features/authSlice";
+import HamburgerMenu from "./HamburgerMenu";
 
 function Header() {
   const authStatus = useSelector((state) => state.auth.status);
@@ -58,7 +59,7 @@ function Header() {
 
   return (
     <header className="primary w-full px-4 py-4 flex items-center justify-center">
-      <nav className="flex items-center justify-between flex-wrap md:w-[85%] mr-14">
+      <nav className="flex items-center justify-between flex-wrap w-[85%] mr-14">
         <Link to={"/"}>
           <div className="flex items-end justify-center gap-2">
             <img src={logo} alt="logo" width={"50px"} className="mb-1" />
@@ -67,7 +68,7 @@ function Header() {
             </p>
           </div>
         </Link>
-        <div className="flex flex-wrap items-center justify-between gap-5">
+        <div className="hidden md:flex flex-wrap items-center justify-between gap-5">
           <ul className="flex flex-wrap items-center justify-around">
             {navItems.map((item) =>
               item.active ? (
@@ -90,11 +91,12 @@ function Header() {
               bgColor=""
               hoverBgColor=""
               textColor="text-gray-100 dark:text-gray-200"
-              className="bg-gray-900 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-900"
+              className="hidden md:block bg-gray-900 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-900"
               onClick={() => logoutHandler()}
             />
           ) : null}
         </div>
+          <HamburgerMenu logoutHandler={logoutHandler} authStatus={authStatus} navItems={navItems} />
       </nav>
     </header>
   );
