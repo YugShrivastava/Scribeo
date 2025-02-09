@@ -5,7 +5,7 @@ import linkedin from "../../assets/linkedin.svg";
 
 function Footer() {
   return (
-    <div className="relative flex flex-wrap items-center justify-center gap-2 sm:gap-14 sm:py-2 py-4 w-full bg-gray-800 bottom-0 text-center text-gray-100 dark:text-gray-300 dark:bg-[hsl(0,0%,17%)] ">
+    <div className="relative flex flex-wrap items-center justify-center gap-2 sm:gap-14 sm:py-2 py-8 w-full bg-gray-800 bottom-0 text-center text-gray-100 dark:text-gray-300 dark:bg-[hsl(0,0%,17%)] ">
       <div className="dark:opacity-80">© 2025 Yug Shrivastava. All Rights Reserved.</div>
       <div className="flex gap-2.5 items-center justify-center">
         <a href="https://github.com/YugShrivastava">

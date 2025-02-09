@@ -10,7 +10,7 @@ function Post() {
   const [post, setPost] = useState(null);
   const navigate = useNavigate();
 
-  const { session } = useSelector((state) => state.auth.session);
+  const  session  = useSelector((state) => state.auth.session);
 
   const isAuthor = post && session ? post.userId === session.$id : false;
 

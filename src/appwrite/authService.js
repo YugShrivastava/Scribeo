@@ -19,9 +19,9 @@ export class AuthService {
         email,
         password,
         username
-      );
+      );  
       if (userAccount) {
-        this.loginUser({ email, password });
+        return await this.loginUser({ email, password });
       } else return userAccount;
     } catch (error) {
       throw error;

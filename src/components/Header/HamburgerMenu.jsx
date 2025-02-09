@@ -8,7 +8,7 @@ function HamburgerMenu({ navItems, authStatus, logoutHandler }) {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
+  // TODO: make hambureger close when clicked elsewhere
   return (
     <>
       <button
@@ -37,7 +37,7 @@ function HamburgerMenu({ navItems, authStatus, logoutHandler }) {
         ></span>
       </button>
       {isOpen ? (
-        <div className="md:hidden absolute top-20 right-16 flex flex-col items-center justify-center gap-2 w-[100px] h-auto accent">
+        <div className="md:hidden absolute top-20 rounded-md right-16 flex flex-col items-center justify-center gap-2 w-[100px] h-auto accent">
           <ul className="flex flex-wrap items-center justify-around">
             {navItems.map((item) =>
               item.active ? (
@@ -48,6 +48,7 @@ function HamburgerMenu({ navItems, authStatus, logoutHandler }) {
                       hoverBgColor="var(--accent)"
                       text={item.name}
                       className="text-primary"
+                      onClick={toggleMenu}
                     />
                   </Link>
                 </li>
@@ -55,14 +56,17 @@ function HamburgerMenu({ navItems, authStatus, logoutHandler }) {
             )}
           </ul>
           {authStatus ? (
-            <span>
+            <span className="w-full">
               <Button
                 text="Logout"
                 bgColor=""
                 hoverBgColor=""
                 textColor="text-gray-100 dark:text-gray-200"
                 className="bg-gray-900 dark:bg-gray-700 w-full hover:bg-gray-700 dark:hover:bg-gray-900"
-                onClick={() => logoutHandler()}
+                onClick={() => {
+                  logoutHandler()
+                  toggleMenu()
+                }}
               />
             </span>
           ) : null}

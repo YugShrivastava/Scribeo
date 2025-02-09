@@ -19,14 +19,9 @@ function Signup() {
       if (user) {
         const session = await authService.getCurrentUser();
         if (session) {
-          authService
-            .loginUser(session)
-            .then(() => {
-              dispatch(login(session));
-            })
-            .catch((error) => setError(error.message));
-          navigate("/");
+          dispatch(login(session));
         }
+        navigate("/");
       }
     } catch (error) {
       setError(error.message);
