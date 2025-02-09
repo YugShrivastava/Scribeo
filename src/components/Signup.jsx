@@ -37,7 +37,7 @@ function Signup() {
         onSubmit={handleSubmit(createUser)}
         className="card-bg border mt-14 rounded-sm"
       >
-        <div className="flex flex-col items-baseline justify-around px-14 py-10 gap-8 w-md">
+        <div className="flex flex-col items-baseline justify-around px-14 py-10 gap-8 md:w-lg sm:w-auto">
           <div className="">
             <h2 className="text-primary text-2xl font-light w-full">
               Sign up to create your account
