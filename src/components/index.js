@@ -11,6 +11,8 @@ import PostForm from "./PostForm";
 import Select from "./Select";
 import RTE from "./RTE";
 import HamburgerMenu from "./Header/HamburgerMenu";
+import Loading from "./Loading";
+import LoadingSub from "./LoadingSub";
 
 export {
   HamburgerMenu,
@@ -26,4 +28,6 @@ export {
   PostForm,
   Select,
   RTE,
+  Loading,
+  LoadingSub,
 };

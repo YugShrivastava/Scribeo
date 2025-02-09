@@ -150,3 +150,42 @@ body {
 .transform-4.active {
   transform: rotate(45deg);
 }
+
+.loader {
+  height: 6px;
+  border-radius: 12px;
+  width: 130px;
+  --c: no-repeat linear-gradient(#6100ee 0 0);
+  background: var(--c), var(--c), #d7b8fc;
+  background-size: 60% 100%;
+  animation: l16 3s infinite;
+}
+@keyframes l16 {
+  0% {
+    background-position: -150% 0, -150% 0;
+  }
+  66% {
+    background-position: 250% 0, -150% 0;
+  }
+  100% {
+    background-position: 250% 0, 250% 0;
+  }
+}
+
+/* HTML: <div class="loader"></div> */
+.loader-sub {
+  width: 25px;
+  padding: 5px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #ecf0f1;
+  --_m: 
+    conic-gradient(#0000 10%,#000),
+    linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+          mask: var(--_m);
+  -webkit-mask-composite: source-out;
+          mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {to{transform: rotate(1turn)}}

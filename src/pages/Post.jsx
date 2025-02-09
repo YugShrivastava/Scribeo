@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import storageService from "../appwrite/config";
-import { Button } from "../components";
-import parse from 'html-react-parser'
+import { Button, Loading } from "../components";
+import parse from "html-react-parser";
 
 function Post() {
   const { slug } = useParams();
   const [post, setPost] = useState(null);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [loader, setLoader] = useState(true);
 
-  const  session  = useSelector((state) => state.auth.session);
+  const session = useSelector((state) => state.auth.session);
 
   const isAuthor = post && session ? post.userId === session.$id : false;
 
@@ -21,6 +23,7 @@ function Post() {
         .then((post) => {
           if (post) {
             setPost(post);
+            setLoader(false);
           } else navigate("/");
         })
         .catch((error) => {});
@@ -30,6 +33,7 @@ function Post() {
   }, [slug, navigate]);
 
   const deletePost = () => {
+    setLoading(true);
     storageService
       .deletePost(post.$id)
       .then((status) => {
@@ -39,9 +43,12 @@ function Post() {
         }
       })
       .catch((error) => {});
+    setLoading(false);
   };
 
-  return post ? (
+  return loader ? (
+    <Loading />
+  ) : post ? (
     <div className="w-full flex flex-col items-center px-10">
       <div className="flex flex-col items-baseline my-14 gap-5 py-4 px-10 border card-bg shadow rounded-md">
         {isAuthor ? (
@@ -52,7 +59,12 @@ function Post() {
                 navigate(`/edit-post/${post.$id}`);
               }}
             />
-            <Button text="Delete" onClick={deletePost} />
+            <Button
+              className="relative"
+              text="Delete"
+              onClick={deletePost}
+              loading={loading}
+            />
           </div>
         ) : null}
         <div>

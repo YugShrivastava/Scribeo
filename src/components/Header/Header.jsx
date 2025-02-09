@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../Button";
@@ -11,6 +11,7 @@ function Header() {
   const authStatus = useSelector((state) => state.auth.status);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const navItems = [
     {
@@ -46,10 +47,12 @@ function Header() {
   ];
 
   const logoutHandler = () => {
+    setLoading(true);
     authService
       .logoutUser()
       .then(() => {
         dispatch(logout());
+        setLoading(false);
         navigate("/");
       })
       .catch((err) => {
@@ -91,12 +94,17 @@ function Header() {
               bgColor=""
               hoverBgColor=""
               textColor="text-gray-100 dark:text-gray-200"
-              className="hidden md:block bg-gray-900 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-900"
+              className="hidden md:block relative bg-gray-900 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-900"
               onClick={() => logoutHandler()}
+              loading={loading}
             />
           ) : null}
         </div>
-          <HamburgerMenu logoutHandler={logoutHandler} authStatus={authStatus} navItems={navItems} />
+        <HamburgerMenu
+          logoutHandler={logoutHandler}
+          authStatus={authStatus}
+          navItems={navItems}
+        />
       </nav>
     </header>
   );

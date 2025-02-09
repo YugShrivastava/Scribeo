@@ -11,8 +11,10 @@ function Signup() {
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
   const { register, handleSubmit } = useForm();
+  const [loading, setLoading] = useState(false)
 
   const createUser = async (data) => {
+    setLoading(true)
     setError(null);
     try {
       const user = await authService.createAccount(data);
@@ -26,6 +28,7 @@ function Signup() {
     } catch (error) {
       setError(error.message);
     }
+    setLoading(false)
   };
 
   return (
@@ -93,7 +96,7 @@ function Signup() {
                 })}
               />
             </div>
-            <Button className="w-full mt-5" text="Sign up" type="submit" />
+            <Button className="w-full mt-5 relative" text="Sign up" type="submit" loading={loading} />
           </div>{" "}
         </div>
       </form>

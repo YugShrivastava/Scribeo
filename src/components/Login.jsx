@@ -6,14 +6,17 @@ import authService from "../appwrite/authService";
 import { login as loginUser } from "../features/authSlice";
 import Input from "./Input";
 import Button from "./Button";
+import { LoadingSub } from "./";
 
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
   const { register, handleSubmit } = useForm();
+  const [loading, setLoading] = useState(false);
 
   const login = async (data) => {
+    setLoading(true);
     setError(null);
     try {
       const user = await authService.loginUser(data);
@@ -29,6 +32,7 @@ function Login() {
     } catch (error) {
       setError(error.message);
     }
+    setLoading(false);
   };
 
   return (
@@ -85,7 +89,12 @@ function Login() {
                 })}
               />
             </div>
-            <Button className="w-full mt-5" text="Login" type="submit" />
+            <Button
+              className="w-full mt-5 relative "
+              text="Login"
+              type="submit"
+              loading={loading}
+            />
           </div>{" "}
         </div>
       </form>

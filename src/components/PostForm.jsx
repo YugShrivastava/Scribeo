@@ -7,6 +7,7 @@ import { Button, Input, RTE, Select } from "./";
 
 function PostForm({ post }) {
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false)
   const { register, handleSubmit, setValue, getValues, watch, control } =
     useForm({
       defaultValues: {
@@ -21,6 +22,7 @@ function PostForm({ post }) {
   const  session  = useSelector((state) => state.auth.session);
 
   const submit = async (data) => {
+    setLoading(true)
     if (post) {
       const file = data.image[0]
         ? await storageService.uploadFile(data.image[0])
@@ -50,6 +52,7 @@ function PostForm({ post }) {
         if (posted) navigate(`/post/${posted.$id}`);
         else setError(error);
       } else setError(error);
+      setLoading(false)
     }
   };
 
@@ -117,7 +120,7 @@ function PostForm({ post }) {
           <Select
             label="Status"
             className="w-full"
-            options={["active", "inactive"]}
+            options={["active", "archive"]}
             {...register("status", {required: true})}
           />
         </div>
@@ -132,7 +135,7 @@ function PostForm({ post }) {
         </div>
         {error ? <div className="text-primary text-xl text-red-400 dark:text-red-500">{error}</div> : null}
         <div className="w-full">
-          <Button text="Upload" type="submit" className="w-full" />
+          <Button text="Upload" type="submit" className="w-full relative" loading={loading} />
         </div>
         <Link to={"/"}>
           <Button

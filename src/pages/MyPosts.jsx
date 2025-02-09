@@ -11,7 +11,6 @@ function MyPosts() {
   const session = useSelector((state) => state.auth.session);
   const userId = session ? session?.$id : undefined;
 
-  console.log(userId, session, session?.$id);
 
   useEffect(() => {
     if (session) {
@@ -21,7 +20,6 @@ function MyPosts() {
           setPosts(posts.documents);
         })
         .catch((error) => {
-          console.log(error);
         })
     }
   }, []);

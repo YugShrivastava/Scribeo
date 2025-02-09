@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import authService from "./appwrite/authService";
 import { Outlet } from "react-router-dom";
 import { login, logout } from "./features/authSlice";
-import { Footer, Header } from "./components";
+import { Footer, Header, Loading } from "./components";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -33,11 +33,11 @@ function App() {
   return (
     <div className="background-primary w-full h-screen flex items-center justify-center flex-col">
       <div className="w-full h-screen flex flex-col items-center">
+        <ThemeSwitch loading={loading} />
         {loading ? (
-          <p className="text-primary text-2xl">Loading...</p>
-        ) : (
+          <Loading />
+) : (
           <>
-            <ThemeSwitch />
             <Header />
             <main className="flex flex-grow lg:w-[85%] w-full justify-center">
               <Outlet />
