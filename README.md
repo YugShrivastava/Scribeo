@@ -18,7 +18,6 @@ Scribeo is a modern blogging platform designed for seamless content creation and
 
 ## 🚀 Try It Out  
 
-- **Live Demo**: https://scribeohub.vercel.app/  
-- **GitHub Repository**: https://github.com/YugShrivastava/Scribeo
+- **Live Demo**: https://scribeohub.vercel.app/
 
 Would love your feedback!
