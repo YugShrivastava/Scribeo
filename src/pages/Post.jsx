@@ -75,7 +75,7 @@ function Post() {
           />
         </div>
         <div className="text-3xl font-semibold text-primary">{post.title}</div>
-        <div className="">{parse(post.content)}</div>
+        <div className="text-primary">{parse(post.content)}</div>
       </div>
     </div>
   ) : null;
